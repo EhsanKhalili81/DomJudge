@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="IR-fa" dir="rtl">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keyword" content="">
+    <!-- <link rel="shortcut icon" href="assets/ico/favicon.png' %}"> -->
+    <title>استاد یار</title>
+    <!-- Icons -->
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/simple-line-icons.css' %}" rel="stylesheet">
+    <!-- Main styles for this application -->
+    <link href="{% static 'dest/style.css' %}" rel="stylesheet">
+</head>
+<!-- BODY options, add following classes to body to change options
+		1. 'compact-nav'     	  - Switch sidebar to minified version (width 50px)
+		2. 'sidebar-nav'		  - Navigation on the left
+			2.1. 'sidebar-off-canvas'	- Off-Canvas
+				2.1.1 'sidebar-off-canvas-push'	- Off-Canvas which move content
+				2.1.2 'sidebar-off-canvas-with-shadow'	- Add shadow to body elements
+		3. 'fixed-nav'			  - Fixed navigation
+		4. 'navbar-fixed'		  - Fixed navbar
+	-->
+
+<body class="navbar-fixed sidebar-nav fixed-nav">
+    <header class="navbar">
+        <div class="container-fluid">
+            <button class="navbar-toggler mobile-toggler hidden-lg-up" type="button">&#9776;</button>
+            <a class="navbar-brand" href="#"></a>
+            <ul class="nav navbar-nav hidden-md-down">
+                <li class="nav-item">
+                    <a class="nav-link navbar-toggler layout-toggler" href="#">&#9776;</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav pull-left hidden-md-down">
+                <li class="nav-item dropdown p-x-1">
+                    <a class="nav-link dropdown-toggle nav-link " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        <img src="{% static 'img/avatars/user.png' %}" class="img-avatar" alt="admin@bootstrapmaster.com">
+                        <span class="hidden-md-down ">مدیر</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="#"><i class="fa fa-user"></i> پروفایل</a>
+                        <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> تنظیمات</a>
+                        <div class="divider"></div>
+                        <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> خروج</a>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </header>
+    <div class="sidebar">
+        <nav class="sidebar-nav">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html"><i class="icon-speedometer"></i> داشبورد </a>
+                </li>
+
+                <li class="nav-title">
+                   مدیریت کاربران
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="icon-user-follow"></i> ثبت کاربر</a>
+                    <a class="nav-link" href="#"><i class="icon-people"></i> لیست کاربران</a>
+                    <a class="nav-link" href="#"><i class="icon-user-following"></i> دسترسی کاربران</a>
+                </li>
+
+                <li class="nav-title">
+                   مدیریت سوالات
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="icon-doc"></i>ثبت سوال</a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="icon-docs"></i> لیست سوالات</a>
+                </li>
+
+                <li class="nav-title">
+                   گزارش گیری
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="icon-people"></i> کاربران</a>
+                    <a class="nav-link" href="#"><i class="icon-docs"></i>  فایل ها</a>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+
+{% block content %}
+
+{% endblock %}
+
+
+<footer class="footer">
+    <span class="pull-right">
+        دانشگاه ملی مهارت - دانشکده شهید محمد منتظری مشهد
+    </span>
+</footer>
+<!-- Bootstrap and necessary plugins -->
+<script src="{% static 'js/libs/jquery.min.js' %}"></script>
+<script src="{% static 'js/libs/tether.min.js' %}"></script>
+<script src="{% static 'js/libs/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/libs/pace.min.js' %}"></script>
+
+<!-- Plugins and scripts required by all views -->
+<script src="{% static 'js/libs/Chart.min.js' %}"></script>
+
+<!-- CoreUI main scripts -->
+
+<script src="{% static 'js/app.js' %}"></script>
+
+<!-- Plugins and scripts required by this views -->
+<!-- Custom scripts required by this view -->
+<script src="{% static 'js/views/main.js' %}"></script>
+
+<!-- Grunt watch plugin -->
+<script src="//localhost:35729/livereload.js' %}"></script>
+</body>
+
+</html>

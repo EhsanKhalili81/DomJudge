@@ -1,0 +1,512 @@
+<!--
+ * CoreUI - Open Source Bootstrap Admin Template
+ * @version v1.0.0-alpha.2
+ * @link http://coreui.io
+ * Copyright (c) 2016 creativeLabs Łukasz Holeczek
+ * @license MIT
+ -->
+<!DOCTYPE html>
+<html lang="IR-fa" dir="rtl">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="CoreUI Bootstrap 4 Admin Template">
+    <meta name="author" content="Lukasz Holeczek">
+    <meta name="keyword" content="CoreUI Bootstrap 4 Admin Template">
+    <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
+    <title>CoreUI Bootstrap 4 Admin Template</title>
+    <!-- Icons -->
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/simple-line-icons.css" rel="stylesheet">
+    <!-- Main styles for this application -->
+    <link href="dest/style.css" rel="stylesheet">
+</head>
+<!-- BODY options, add following classes to body to change options
+		1. 'compact-nav'     	  - Switch sidebar to minified version (width 50px)
+		2. 'sidebar-nav'		  - Navigation on the left
+			2.1. 'sidebar-off-canvas'	- Off-Canvas
+				2.1.1 'sidebar-off-canvas-push'	- Off-Canvas which move content
+				2.1.2 'sidebar-off-canvas-with-shadow'	- Add shadow to body elements
+		3. 'fixed-nav'			  - Fixed navigation
+		4. 'navbar-fixed'		  - Fixed navbar
+	-->
+
+<body class="navbar-fixed sidebar-nav fixed-nav">
+    <header class="navbar">
+        <div class="container-fluid">
+            <button class="navbar-toggler mobile-toggler hidden-lg-up" type="button">&#9776;</button>
+            <a class="navbar-brand" href="#"></a>
+            <ul class="nav navbar-nav hidden-md-down">
+                <li class="nav-item">
+                    <a class="nav-link navbar-toggler layout-toggler" href="#">&#9776;</a>
+                </li>
+
+                <!--<li class="nav-item p-x-1">
+                    <a class="nav-link" href="#">داشبورد</a>
+                </li>
+                <li class="nav-item p-x-1">
+                    <a class="nav-link" href="#">Users</a>
+                </li>
+                <li class="nav-item p-x-1">
+                    <a class="nav-link" href="#">Settings</a>
+                </li>-->
+            </ul>
+            <ul class="nav navbar-nav pull-left hidden-md-down">
+                <!-- <li class="nav-item">
+                    <a class="nav-link aside-toggle" href="#"><i class="icon-bell"></i><span class="tag tag-pill tag-danger">5</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="icon-list"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="icon-location-pin"></i></a>
+                </li> -->
+                <li class="nav-item dropdown p-x-1">
+                    <a class="nav-link dropdown-toggle nav-link " data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        <img src="img/avatars/user.png" class="img-avatar" alt="admin@bootstrapmaster.com">
+                        <span class="hidden-md-down ">مدیر</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <!-- <div class="dropdown-header text-xs-center">
+                            <strong>تنظیمات</strong>
+                        </div> -->
+                        <a class="dropdown-item" href="#"><i class="fa fa-user"></i> پروفایل</a>
+                        <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> تنظیمات</a>
+                        <!--<a class="dropdown-item" href="#"><i class="fa fa-usd"></i> Payments<span class="tag tag-default">42</span></a>-->
+                        <div class="divider"></div>
+                        <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> خروج</a>
+                    </div>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link navbar-toggler aside-toggle" href="#">&#9776;</a>
+                </li> -->
+
+            </ul>
+        </div>
+    </header>
+    <div class="sidebar">
+        <nav class="sidebar-nav">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html"><i class="icon-speedometer"></i> داشبورد </a>
+                </li>
+
+                <li class="nav-title">
+                   مدیریت کاربران
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="icon-user-follow"></i> ثبت کاربر</a>
+                    <a class="nav-link" href="#"><i class="icon-people"></i> لیست کاربران</a>
+                    <a class="nav-link" href="#"><i class="icon-user-following"></i> دسترسی کاربران</a>
+                </li>
+
+                <li class="nav-title">
+                   مدیریت سوالات
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="icon-doc"></i>ثبت سوال</a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="icon-docs"></i> لیست سوالات</a>
+                </li>
+
+                <li class="nav-title">
+                   گزارش گیری
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="icon-people"></i> کاربران</a>
+                    <a class="nav-link" href="#"><i class="icon-docs"></i>  فایل ها</a>
+                </li>
+                <!--<li class="nav-item nav-dropdown">
+                    <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> ثبت کاربر جدید</a>
+                    <ul class="nav-dropdown-items">
+                        <li class="nav-item">
+                            <a class="nav-link" href="components-buttons.html"><i class="icon-puzzle"></i> لیست کاربران</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="components-social-buttons.html"><i class="icon-puzzle"></i> Social Buttons</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="components-cards.html"><i class="icon-puzzle"></i> Cards</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="components-forms.html"><i class="icon-puzzle"></i> Forms</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="components-switches.html"><i class="icon-puzzle"></i> Switches</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="components-tables.html"><i class="icon-puzzle"></i> Tables</a>
+                        </li>
+                    </ul>
+                </li>-->
+
+                <!--<li class="nav-item nav-dropdown">
+                    <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> Icons</a>
+                    <ul class="nav-dropdown-items">
+                        <li class="nav-item">
+                            <a class="nav-link" href="icons-font-awesome.html"><i class="icon-star"></i> Font Awesome</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="icons-simple-line-icons.html"><i class="icon-star"></i> Simple Line Icons</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="widgets.html"><i class="icon-calculator"></i> Widgets <span class="tag tag-info">NEW</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="charts.html"><i class="icon-pie-chart"></i> Charts</a>
+                </li>-->
+                <!--<li class="divider"></li>
+                <li class="nav-title">
+                    Extras
+                </li>
+                <li class="nav-item nav-dropdown">
+                    <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> Pages</a>
+                    <ul class="nav-dropdown-items">
+                        <li class="nav-item">
+                            <a class="nav-link" href="pages-login.html" target="_top"><i class="icon-star"></i> Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pages-register.html" target="_top"><i class="icon-star"></i> Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pages-404.html" target="_top"><i class="icon-star"></i> Error 404</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pages-500.html" target="_top"><i class="icon-star"></i> Error 500</a>
+                        </li>
+                    </ul>
+                </li>-->
+
+            </ul>
+        </nav>
+    </div>
+    <!-- Main content -->
+    <main class="main">
+
+        <!-- Breadcrumb -->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">خانه</li>
+            <li class="breadcrumb-item"><a href="#">مدیریت</a>
+            </li>
+            <li class="breadcrumb-item active">لیست سوالات</li>
+
+            <!-- Breadcrumb Menu-->
+            <!-- <li class="breadcrumb-menu">
+                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                    <a class="btn btn-secondary" href="#"><i class="icon-speech"></i></a>
+                    <a class="btn btn-secondary" href="./"><i class="icon-graph"></i> &nbsp;داشبورد</a>
+                    <a class="btn btn-secondary" href="#"><i class="icon-settings"></i> &nbsp;تنظیمات</a>
+                </div>
+            </li> -->
+        </ol>
+
+        <div class="container-fluid">
+
+
+            <table class="table table-hover table-outline m-b-0 hidden-sm-down">
+                <thead class="thead-default">
+                    <tr>
+                        <th class="text-xs-center">شماره سوال</i>
+                        </th>
+                        <th class="text-xs-center">عنوان</th>
+                        <th class="text-xs-center">تاریخ بارگذاری</th>
+                        <th class="text-xs-center">تعداد حل</th>
+                        <!-- <th class="text-xs-center">نتیجه</th> -->
+                        <th class="text-xs-center" >عملیات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-xs-center">
+                            <div class="avatar">
+                                <!-- <img src="img/avatars/user.png" class="img-avatar" alt="admin@bootstrapmaster.com" src="img/avatars/user.png"> -->
+                                <!-- <span class="avatar-status tag-success"></span> -->
+                                 <strong>1</strong>
+                            </div>
+                        </td>
+                        <td class="text-xs-center">
+                            <div>محمد حسین زاده</div>
+                            <div class="small text-muted">
+                                <!-- <span>New</span>| Registered: Jan 1, 2015 -->
+                            </div>
+                        </td>
+                        <td class="text-xs-center">
+                            <!-- <img src="img/flags/USA.png" alt="USA" style="height:24px;" src="img/flags/USA.png"> -->
+                             <strong>0123456789012</strong>
+                        </td>
+                        <td class="text-xs-center" >
+                            <!-- <div class="clearfix"> -->
+                                <!-- <div class="pull-right"> -->
+                                    <strong>0900123456</strong>
+                                <!-- </div> -->
+                                <!-- <div class="pull-left">
+                                    <small class="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
+                                </div> -->
+                            <!-- </div> -->
+                            <!-- <progress class="progress progress-xs progress-warning" value="74" max="100" style="margin:5px 0 0 0;">74%</progress> -->
+                        </td>
+                        <!-- <td class="text-xs-center">
+                            <i class="fa fa-cc-mastercard" style="font-size:24px"></i>
+                            <span class="tag tag-success">صحیح</span>
+                        </td> -->
+                        <td class="text-xs-center">
+                            <button type="button" class="btn btn-outline-success">ویرایش</button>
+                            <!-- <button type="button" class="btn btn-success"><i class="fa fa-magic"></i>&nbsp; Success</button> -->
+                            <!-- <i style="color: rgb(5, 148, 5); padding-left: 5%;" class="fa fa-check-square fa-lg " ></i>
+                            <i style="color: rgb(38, 198, 6);" class="fa fa-edit fa-lg"></i> -->
+                            <!-- <div class="small text-muted">Last login</div>
+                            <strong>10 sec ago</strong> -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-xs-center">
+                            <div class="avatar">
+                                <!-- <img src="img/avatars/user.png" class="img-avatar" alt="admin@bootstrapmaster.com" src="img/avatars/user.png"> -->
+                                <strong>2</strong>
+
+                                <!-- <span class="avatar-status tag-danger"></span> -->
+                            </div>
+                        </td>
+                        <td class="text-xs-center">
+                            <div>علی باقری</div>
+                            <div class="small text-muted">
+
+                                <!-- <span>Recurring</span>| Registered: Jan 1, 2015 -->
+                            </div>
+                        </td>
+                        <td class="text-xs-center">
+                            <!-- <img src="img/flags/Brazil.png" alt="Brazil" style="height:24px;" src="img/flags/Brazil.png"> -->
+                            <span>جاوا</span>
+
+                        </td>
+                        <td class="text-xs-center">
+                            <!-- <div class="clearfix"> -->
+                                <!-- <div class="pull-right"> -->
+                                    <strong>میز گرد بزرگ</strong>
+                                <!-- </div> -->
+                                <!-- <div class="pull-left">
+                                    <small class="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
+                                </div> -->
+                            <!-- </div> -->
+                            <!-- <progress class="progress progress-xs progress-warning" value="74" max="100" style="margin:5px 0 0 0;">74%</progress> -->
+                        </td>
+                        <!-- <td class="text-xs-center">
+                            <i class="fa fa-cc-visa" style="font-size:24px"></i>
+                            <span class="tag tag-warning">در صف بررسی</span>
+                        </td> -->
+                        <td class="text-xs-center">
+                            <button type="button" class="btn btn-outline-success">ویرایش</button>
+
+                            <!-- <i style="color: rgb(5, 148, 5); padding-left: 5%;" class="fa fa-check-square fa-lg " ></i>
+                            <i style="color: rgb(38, 198, 6);" class="fa fa-edit fa-lg"></i> -->
+                            <!-- <div class="small text-muted">Last login</div>
+                            <strong>5 minutes ago</strong> -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-xs-center">
+                            <div class="avatar">
+                                <!-- <img src="img/avatars/user.png" class="img-avatar" alt="admin@bootstrapmaster.com" src="img/avatars/user.png"> -->
+                                <strong>3</strong>
+                                <!-- <span class="avatar-status tag-warning"></span> -->
+                            </div>
+                        </td>
+                        <td class="text-xs-center">
+                            <div>سید رضا حسینی</div>
+                            <div class="small text-muted">
+                                <!-- <span>New</span>| Registered: Jan 1, 2015</div> -->
+                        </td>
+                        <td class="text-xs-center">
+                            <!-- <img src="img/flags/India.png" alt="India" style="height:24px;" src="img/flags/India.png"> -->
+                            <span>سی شارپ</span>
+                        </td>
+                        <td class="text-xs-center">
+                            <!-- <div class="clearfix">
+                                <div class="pull-right"> -->
+                                    <strong>رشته خوب و رشته بد</strong>
+                                <!-- </div> -->
+                                <!-- <div class="pull-left">
+                                    <small class="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
+                                </div> -->
+                            <!-- </div> -->
+                            <!-- <progress class="progress progress-xs progress-warning" value="74" max="100" style="margin:5px 0 0 0;">74%</progress> -->
+                        </td>
+                        <!-- <td class="text-xs-center">
+                            <i class="fa fa-cc-stripe" style="font-size:24px"></i>
+                            <span class="tag tag-danger">نادرست</span>
+                        </td> -->
+                        <td class="text-xs-center">
+                            <button type="button" class="btn btn-outline-success">ویرایش</button>
+                            <!-- <i style="color: rgb(5, 148, 5); padding-left: 5%;" class="fa fa-check-square fa-lg " ></i>
+                            <i style="color: rgb(38, 198, 6);" class="fa fa-edit fa-lg"></i> -->
+                            <!-- <div class="small text-muted">Last login</div>
+                            <strong>1 hour ago</strong> -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-xs-center">
+                            <div class="avatar">
+                                <!-- <img src="img/avatars/user.png" class="img-avatar" alt="admin@bootstrapmaster.com" src="img/avatars/user.png"> -->
+                                <strong>4</strong>
+                                <!-- <span class="avatar-status tag-default"></span> -->
+                            </div>
+                        </td>
+                        <td class="text-xs-center">
+                            <div>فرهاد هاشمی</div>
+                            <div class="small text-muted">
+                                <!-- <span>New</span>| Registered: Jan 1, 2015 -->
+                            </div>
+                        </td>
+                        <td class="text-xs-center">
+                            <!-- <img src="img/flags/France.png" alt="France" style="height:24px;" src="img/flags/France.png"> -->
+                            <span>سی + +</span>
+                        </td>
+                        <td class="text-xs-center">
+                            <!-- <div class="clearfix">
+                                <div class="pull-right"> -->
+                                    <strong>نقشه کشی جدول</strong>
+                                <!-- </div> -->
+                                <!-- <div class="pull-left">
+                                    <small class="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
+                                </div> -->
+                            <!-- </div> -->
+                            <!-- <progress class="progress progress-xs progress-danger" value="98" max="100" style="margin:5px 0 0 0;">98%</progress> -->
+                        </td>
+                        <!-- <td class="text-xs-center">
+                            <i class="fa fa-paypal" style="font-size:24px"></i>
+                            <span class="tag tag-warning">در صف بررسی</span>
+                        </td> -->
+                        <td class="text-xs-center">
+                            <button type="button" class="btn btn-outline-success">ویرایش</button>
+                            <!-- <i style="color: rgb(5, 148, 5); padding-left: 5%;" class="fa fa-check-square fa-lg " ></i>
+                            <i style="color: rgb(38, 198, 6);" class="fa fa-edit fa-lg"></i> -->
+                            <!-- <div class="small text-muted">Last login</div>
+                            <strong>Last month</strong> -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-xs-center">
+                            <div class="avatar">
+                                <!-- <img src="img/avatars/user.png" class="img-avatar" alt="admin@bootstrapmaster.com" src="img/avatars/user.png"> -->
+                                <strong>5</strong>
+                                <!-- <span class="avatar-status tag-success"></span> -->
+                            </div>
+                        </td>
+                        <td  class="text-xs-center">
+                            <div>مرتضی حسنی</div>
+                            <div class="small text-muted">
+                                <!-- <span>New</span>| Registered: Jan 1, 2015 -->
+                            </div>
+                        </td>
+                        <td class="text-xs-center">
+                            <!-- <img src="img/flags/Spain.png" alt="Spain" style="height:24px;" src="img/flags/Spain.png"> -->
+                            <span>پایتون</span>
+                        </td>
+                        <td class="text-xs-center">
+                            <!-- <div class="clearfix">
+                                <div class="pull-right"> -->
+                                    <strong>طول مجموع و ارقام</strong>
+                                <!-- </div> -->
+                                <!-- <div class="pull-left">
+                                    <small class="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
+                                </div> -->
+                            <!-- </div> -->
+                            <!-- <progress class="progress progress-xs progress-warning" value="74" max="100" style="margin:5px 0 0 0;">74%</progress> -->
+                        </td>
+                        <!-- <td class="text-xs-center">
+                            <i class="fa fa-google-wallet" style="font-size:24px"></i>
+                            <span class="tag tag-danger">نادرست</span>
+                        </td> -->
+                        <td class="text-xs-center">
+                            <button type="button" class="btn btn-outline-primary">ویرایش</button>
+                            <!-- <i style="color: rgb(5, 148, 5); padding-left: 5%;" class="fa fa-check-square fa-lg" ></i>
+                            <i style="color: rgb(38, 198, 6);" class="fa fa-edit fa-lg"></i> -->
+                            <!-- <div class="small text-muted">Last login</div>
+                            <strong>Last week</strong> -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-xs-center">
+                            <div class="avatar">
+                                <!-- <img src="img/avatars/user.png" class="img-avatar" alt="admin@bootstrapmaster.com" src="img/avatars/user.png"> -->
+                                <strong>6</strong>
+                                <!-- <span class="avatar-status tag-danger"></span> -->
+                            </div>
+                        </td>
+                        <td class="text-xs-center">
+                            <div>امیر شاملو</div>
+                            <div class="small text-muted">
+                                <!-- <span>New</span>| Registered: Jan 1, 2015 -->
+                            </div>
+                        </td>
+                        <td class="text-xs-center">
+                            <!-- <img src="img/flags/Poland.png" alt="Poland" style="height:24px;" src="img/flags/Poland.png"> -->
+                            <span>جاوا</span>
+                        </td>
+                        <td class="text-xs-center">
+                            <!-- <div class="clearfix">
+                                <div class="pull-right"> -->
+                                    <strong>اعداد هگزا دسیمال</strong>
+                                <!-- </div> -->
+                                <!-- <div class="pull-left">
+                                    <small class="text-muted">Jun 11, 2015 - Jul 10, 2015</small>
+                                </div> -->
+                            <!-- </div> -->
+                            <!-- <progress class="progress progress-xs progress-warning" value="74" max="100" style="margin:5px 0 0 0;">74%</progress> -->
+                        </td>
+                        <!-- <td class="text-xs-center">
+                            <i class="fa fa-cc-amex" style="font-size:24px"></i>
+                            <span class="tag tag-success">صحیح</span>
+                        </td> -->
+                        <td class="text-xs-center">
+                            <button type="button" class="btn btn-outline-success ">ویرایش</button>
+                            <!-- <i style="color: rgb(5, 148, 5); padding-left: 5%;" class="fa fa-check-square fa-lg " ></i>
+                            <i style="color: rgb(38, 198, 6);" class="fa fa-edit fa-lg"></i> -->
+                            <!-- <div class="small text-muted">Last login</div> -->
+                            <!-- <strong>Yesterday</strong> -->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <!--/.container-fluid-->
+    </main>
+
+
+    <footer class="footer">
+        <span class="text-left">
+            <!-- <a href="http://coreui.io">CoreUI</a> &copy; 2016 creativeLabs. -->
+        </span>
+        <span class="pull-right">
+            <!-- Powered by <a href="http://coreui.io">CoreUI</a> -->
+            دانشگاه ملی مهارت - دانشکده شهید محمد منتظری مشهد
+        </span>
+    </footer>
+    <!-- Bootstrap and necessary plugins -->
+    <script src="js/libs/jquery.min.js"></script>
+    <script src="js/libs/tether.min.js"></script>
+    <script src="js/libs/bootstrap.min.js"></script>
+    <script src="js/libs/pace.min.js"></script>
+
+    <!-- Plugins and scripts required by all views -->
+    <script src="js/libs/Chart.min.js"></script>
+
+    <!-- CoreUI main scripts -->
+
+    <script src="js/app.js"></script>
+
+    <!-- Plugins and scripts required by this views -->
+    <!-- Custom scripts required by this view -->
+    <script src="js/views/main.js"></script>
+
+    <!-- Grunt watch plugin -->
+    <script src="//localhost:35729/livereload.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,249 @@
+{% extends "teacher/base.html" %}
+{% load static %}
+{% block content%}
+    <!-- Main content -->
+    <main class="main">
+
+        <!-- Breadcrumb -->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">خانه</li>
+            <li class="breadcrumb-item"><a href="#">مدیریت</a>
+            </li>
+            <li class="breadcrumb-item active">داشبورد</li>
+
+            <!-- Breadcrumb Menu-->
+
+        </ol>
+
+        <div class="container-fluid">
+
+            <div class="animated fadeIn">
+                <div class="row">
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="card card-inverse card-primary">
+                            <div class="card-block p-b-0">
+                                <h4 class="m-b-0">9.823</h4>
+                                <p>تعداد ارسالی ها</p>
+                            </div>
+                            <div class="chart-wrapper p-x-1" style="height:70px;">
+                                <canvas id="card-chart1" class="chart" height="70"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/col-->
+
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="card card-inverse card-info">
+                            <div class="card-block p-b-0">
+                                <h4 class="m-b-0">9.823</h4>
+                                <p>تعداد پاسخ درست</p>
+                            </div>
+                            <div class="chart-wrapper p-x-1" style="height:70px;">
+                                <canvas id="card-chart2" class="chart" height="70"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/col-->
+
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="card card-inverse card-warning">
+                            <div class="card-block p-b-0">
+                                <h4 class="m-b-0">9.823</h4>
+                                <p>تعداد پاسخ های نادرست</p>
+                            </div>
+                            <div class="chart-wrapper" style="height:70px;">
+                                <canvas id="card-chart3" class="chart" height="70"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/col-->
+
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="card card-inverse card-danger">
+                            <div class="card-block p-b-0">
+                                <h4 class="m-b-0">9.823</h4>
+                                <p>تعداد بی پاسخ ها</p>
+                            </div>
+                            <div class="chart-wrapper p-x-1" style="height:70px;">
+                                <canvas id="card-chart4" class="chart" height="70"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/col-->
+
+                </div>
+                <!--/row-->
+            </div>
+            <table class="table table-hover table-outline m-b-0 hidden-sm-down">
+                <thead class="thead-default">
+                    <tr>
+                        <th class="text-xs-center"><i class="icon-people"></i>
+                        </th>
+                        <th class="text-xs-center">دانشجو</th>
+                        <th class="text-xs-center">زبان</th>
+                        <th class="text-xs-center">سوال</th>
+                        <th class="text-xs-center">نتیجه</th>
+                        <th>عملیات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-xs-center">
+                            <div class="avatar">
+                                <img src="{% static 'img/avatars/user.png' %}" class="img-avatar" alt="admin@bootstrapmaster.com" src="{% static 'img/avatars/user.png' %}">
+                                <!-- <span class="avatar-status tag-success"></span> -->
+                            </div>
+                        </td>
+                        <td class="text-xs-center">
+                            <div>محمد حسین زاده</div>
+                            <div class="small text-muted">
+                            </div>
+                        </td>
+                        <td class="text-xs-center">
+                             <span>پایتون</span>
+                        </td>
+                        <td class="text-xs-center">
+                                    <strong>دزدی کلان در کلانتری</strong>
+                        </td>
+                        <td class="text-xs-center">
+                            <span class="tag tag-success">صحیح</span>
+                        </td>
+                        <td>
+                            <i style="color: rgb(5, 148, 5); padding-left: 5%;" class="fa fa-check-square fa-lg " ></i>
+                            <i style="color: rgb(38, 198, 6);" class="fa fa-edit fa-lg"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-xs-center">
+                            <div class="avatar">
+                                <img src="{% static 'img/avatars/user.png' %}" class="img-avatar" alt="admin@bootstrapmaster.com" src="{% static 'img/avatars/user.png' %}">
+                                <!-- <span class="avatar-status tag-danger"></span> -->
+                            </div>
+                        </td>
+                        <td class="text-xs-center">
+                            <div>علی باقری</div>
+                            <div class="small text-muted">
+
+                            </div>
+                        </td>
+                        <td class="text-xs-center">
+                            <span>جاوا</span>
+
+                        </td>
+                        <td class="text-xs-center">
+                                    <strong>میز گرد بزرگ</strong>
+                        </td>
+                        <td class="text-xs-center">
+                            <span class="tag tag-warning">در صف بررسی</span>
+                        </td>
+                        <td>
+                            <i style="color: rgb(5, 148, 5); padding-left: 5%;" class="fa fa-check-square fa-lg " ></i>
+                            <i style="color: rgb(38, 198, 6);" class="fa fa-edit fa-lg"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-xs-center">
+                            <div class="avatar">
+                                <img src="{% static 'img/avatars/user.png' %}" class="img-avatar" alt="admin@bootstrapmaster.com" src="{% static 'img/avatars/user.png' %}">
+                            </div>
+                        </td>
+                        <td class="text-xs-center">
+                            <div>سید رضا حسینی</div>
+                            <div class="small text-muted">
+                        </td>
+                        <td class="text-xs-center">
+                            <span>سی شارپ</span>
+                        </td>
+                        <td class="text-xs-center">
+                                    <strong>رشته خوب و رشته بد</strong>
+                        </td>
+                        <td class="text-xs-center">
+                            <span class="tag tag-danger">نادرست</span>
+                        </td>
+                        <td>
+                            <i style="color: rgb(5, 148, 5); padding-left: 5%;" class="fa fa-check-square fa-lg " ></i>
+                            <i style="color: rgb(38, 198, 6);" class="fa fa-edit fa-lg"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-xs-center">
+                            <div class="avatar">
+                                <img src="{% static 'img/avatars/user.png' %}" class="img-avatar" alt="admin@bootstrapmaster.com" src="{% static 'img/avatars/user.png' %}">
+                            </div>
+                        </td>
+                        <td class="text-xs-center">
+                            <div>فرهاد هاشمی</div>
+                            <div class="small text-muted">
+                            </div>
+                        </td>
+                        <td class="text-xs-center">
+                            <span>سی + +</span>
+                        </td>
+                        <td class="text-xs-center">
+                                    <strong>نقشه کشی جدول</strong>
+                        </td>
+                        <td class="text-xs-center">
+                            <span class="tag tag-warning">در صف بررسی</span>
+                        </td>
+                        <td>
+                            <i style="color: rgb(5, 148, 5); padding-left: 5%;" class="fa fa-check-square fa-lg " ></i>
+                            <i style="color: rgb(38, 198, 6);" class="fa fa-edit fa-lg"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-xs-center">
+                            <div class="avatar">
+                                <img src="{% static 'img/avatars/user.png' %}" class="img-avatar" alt="admin@bootstrapmaster.com" src="{% static 'img/avatars/user.png' %}">
+                            </div>
+                        </td>
+                        <td class="text-xs-center">
+                            <div>مرتضی حسنی</div>
+                            <div class="small text-muted">
+                            </div>
+                        </td>
+                        <td class="text-xs-center">
+                            <span>پایتون</span>
+                        </td>
+                        <td class="text-xs-center">
+                                    <strong>طول مجموع و ارقام</strong>
+                        </td>
+                        <td class="text-xs-center">
+                            <span class="tag tag-danger">نادرست</span>
+                        </td>
+                        <td>
+                            <i style="color: rgb(5, 148, 5); padding-left: 5%;" class="fa fa-check-square fa-lg" ></i>
+                            <i style="color: rgb(38, 198, 6);" class="fa fa-edit fa-lg"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-xs-center">
+                            <div class="avatar">
+                                <img src="{% static 'img/avatars/user.png' %}" class="img-avatar" alt="admin@bootstrapmaster.com" src="{% static 'img/avatars/user.png' %}">
+                            </div>
+                        </td>
+                        <td class="text-xs-center">
+                            <div>امیر شاملو</div>
+                            <div class="small text-muted">
+                            </div>
+                        </td>
+                        <td class="text-xs-center">
+                            <span>جاوا</span>
+                        </td>
+                        <td class="text-xs-center">
+                                    <strong>اعداد هگزا دسیمال</strong>
+                        </td>
+                        <td class="text-xs-center">
+                            <span class="tag tag-success">صحیح</span>
+                        </td>
+                        <td>
+                            <i style="color: rgb(5, 148, 5); padding-left: 5%;" class="fa fa-check-square fa-lg " ></i>
+                            <i style="color: rgb(38, 198, 6);" class="fa fa-edit fa-lg"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <!--/.container-fluid-->
+    </main>
+{% endblock %}
