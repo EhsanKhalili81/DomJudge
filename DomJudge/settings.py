@@ -126,3 +126,15 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Login Url after user logged in
+LOGIN_REDIRECT_URL = '/'
+
+# logout Url after user logged out
+LOGOUT_REDIRECT_URL = '/login/'
+
+
+# settings.py
+AUTH_USER_MODEL = 'Accounting.CustomUser'  # Update this to your app and model
+
