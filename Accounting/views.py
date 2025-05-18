@@ -10,22 +10,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.decorators import method_decorator
 from .models import *
 from django.contrib import messages
+from Judge.models import Submissions,Contester,Contest
+from .permission import student_required,teacher_required
 
 
 
-def teacher_required(view_func):
-    def _wrapped_view(request, *args, **kwargs):
-        if request.user.is_authenticated and request.user.role == 'teacher':
-            return view_func(request, *args, **kwargs)
-        return HttpResponseForbidden("You are not authorized to view this page.")
-    return _wrapped_view
 
-def student_required(view_func):
-    def _wrapped_view(request, *args, **kwargs):
-        if request.user.is_authenticated and request.user.role == 'student':
-            return view_func(request, *args, **kwargs)
-        return HttpResponseForbidden("You are not authorized to view this page.")
-    return _wrapped_view
  
 class CustomLoginView(LoginView):
     template_name = 'login.html'
@@ -42,10 +32,18 @@ class TeacherHomeView(LoginRequiredMixin,TemplateView):
     template_name = 'teacher\index.html'
     login_url = '/login/'
 
+    def get_context_data(self ,**kwargs):
+        studentActivity = Submissions.objects.filter( is_Checked = False , is_contest = False)
+        return {"context" : studentActivity}
 
-@method_decorator(student_required, name='dispatch')
+
+# @method_decorator(student_required, name='dispatch')
 class StudentHomeView(LoginRequiredMixin,TemplateView):
     template_name = 'student\index.html'
+
+    def get_context_data(self ,**kwargs):
+        studentActivity = Submissions.objects.filter(student = self.request.user , is_contest = False)
+        return {"context" : studentActivity}
 
 
 @method_decorator(student_required, name='dispatch')
@@ -141,3 +139,24 @@ class User_Detail(View):
     def post(self,request,id):
         user = get_object_or_404(CustomUser,pk = id)
         return render(request,'teacher/userdetail.html',{'context':user})
+
+
+@method_decorator(teacher_required, name='dispatch')
+class addContester(View):
+    def get(self,request):
+        contests = Contest.objects.all()
+        # users = CustomUser.objects.filter(role=1)
+        users = CustomUser.objects.exclude(id__in=Contester.objects.values_list('user_id', flat=True)).filter(role=1)
+        return render(request,'contest/addcontester.html',{'contests':contests,'users':users})
+    def post(self,request):
+        contest = Contest.objects.get(id=request.POST.get('contest'))
+        questions = {}
+        # counter = 1
+        for question in contest.questions.values():
+            id = question['id']
+            questions[f'{id}'] = {"result":False,"tries":0,"first":False}
+            id = ''
+            # counter += 1
+        Contester.objects.create(user = CustomUser.objects.get(id=request.POST.get('user')),contest =contest,questions=questions )
+        messages.success(request, 'کاربر با موفقیت ثبت شد.')
+        return redirect('addContester') 

@@ -1,0 +1,63 @@
+{% extends "contest/base.html" %}
+{% comment %} {% load static %} {% endcomment %}
+{% block content%}
+
+    <!-- Main content -->
+    <main class="main">
+
+        <!-- Breadcrumb -->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">خانه</li>
+            <li class="breadcrumb-item"><a href="#">جدول مسابقه</a>
+            </li>
+
+        </ol>
+        {% comment %} {% for i in questions%}
+<form method="POST" action="{% url 'contestSubmitQuestion' i.id%}" enctype="multipart/form-data"> 
+    {% csrf_token %}
+    <input type="file" id="file-input" name="solution">
+
+    <button type="submit">aaa</button>
+</form>
+{% endfor %} {% endcomment %}
+<div class="row container">
+{% for question in questions%}
+
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong>{{question.title}}</strong>
+                            </div>
+                            <div class="card-block">
+                                <form action="{% url 'contestSubmitQuestion' question.id%}" enctype="multipart/form-data" method="post" class="form-horizontal ">
+                                {% csrf_token %}
+                                <div class="form-group row">
+                                        <div class="col-md-9">
+                                            <select id="select" name="lang" class="form-control input-sm" size="1">
+                                                <option value="python">python</option>
+                                                <option value="c#">c#</option>
+                                                <option value="java">java</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                <div class="form-group row">
+                                        <label class="col-md-3 form-control-label" for="file-input">انتخاب فایل :</label>
+                                        <div class="col-md-9">
+                                            <input type="file" id="file-input" name="solution">
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-dot-circle-o"></i> ارسال پاسخ</button>
+                            </div>
+                        </div>
+                    </div>
+</form>
+{% endfor %}
+                </div>
+
+</div>
+<!--/.container-fluid-->
+</main>
+
+{% endblock %}

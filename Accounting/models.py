@@ -13,5 +13,5 @@ class CustomUser(AbstractUser):
     mobilephone = models.CharField(max_length=15, blank=True, null=True)
     nationalcode = models.CharField(max_length=10,blank=True) 
 
-    def __str__(self):
-        return self.username
+    # def __str__(self):
+    #     return self.username

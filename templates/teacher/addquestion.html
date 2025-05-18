@@ -63,16 +63,16 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">نوع ورودی</label>
+                                    <label class="col-md-3 form-control-label" for="text-input">مدل ورودی</label>
                                     <div class="col-md-9">
-                                        <input type="text" id="text-input" name="inputs" class="form-control" placeholder="نوع ورودی">
+                                        <input type="text" id="text-input" name="inputs" class="form-control" placeholder="مدل ورودی">
                                         {% comment %} <span class="help-block">This is a help text</span> {% endcomment %}
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="outputs">نوع خروجی</label>
+                                    <label class="col-md-3 form-control-label" for="outputs">مدل خروجی</label>
                                     <div class="col-md-9">
-                                        <input type="text" id="text-input" name="outputs" class="form-control" placeholder="نوع خروجی">
+                                        <input type="text" id="text-input" name="outputs" class="form-control" placeholder="مدل خروجی">
                                         {% comment %} <span class="help-block">This is a help text</span> {% endcomment %}
                                     </div>
                                 </div>
@@ -96,9 +96,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="file-input">فایل خروجی ها</label>
+                                    <label class="col-md-3 form-control-label" for="file-output">فایل خروجی ها</label>
                                     <div class="col-md-9">
-                                        <input type="file" accept="application/pdf" id="file-input" name="file-input">
+                                        <input type="file" accept="application/pdf" id="file-output" name="file-output">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -115,7 +115,7 @@
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="text-input">مهلت ارسال</label>
                                     <div class="col-md-9">
-                                        <input data-jdp data-jdp-only-date type="text" id="text-input" name="deadline" class="form-control" placeholder="برای انتخاب تاریخ ، کلیک کنید">
+                                        <input data-jdp data-jdp-max-date type="text" id="text-input" name="deadline" class="form-control" placeholder="برای انتخاب تاریخ ، کلیک کنید">
                                         {% comment %} <span class="help-block">This is a help text</span> {% endcomment %}
                                     </div>
                                 </div>
@@ -130,10 +130,9 @@
                                     <label class="col-md-3 form-control-label" for="select">درس</label>
                                     <div class="col-md-9">
                                         <select id="select" name="course" class="form-control" size="1">
-                                            <option value="0">ریاضی</option>
-                                            <option value="1">فیزیک</option>
-                                            <option value="2">شیمی</option>
-                                            <option value="3">هیجی</option>
+                                            {% for i in context %}
+                                            <option value="{{i.id}}">{{i.title}} - {{i.major_code}}</option>
+                                            {% endfor %}
                                         </select>
                                     </div>
                                 </div>

@@ -1,8 +1,39 @@
 {% extends "student/base.html" %}
 {% load static %}
+{% load filters %}
 {% block content%}
     <!-- Main content -->
     <main class="main">
+            {% comment %}===================== Pop up message =============================== {% endcomment %}
+            {% if messages %}
+            <!-- Overlay -->
+            <div id="overlay" style="display: block; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 999;"></div>
+            
+            <!-- Pop-up -->
+            <div id="popup" style="display: block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 400px; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); z-index: 1000;">
+                <!-- Close Button -->
+                <span style="position: absolute; top: 15px; right: 15px; font-size: 20px; font-weight: bold; color: #888; cursor: pointer;" onclick="hidePopup()">×</span>
+                
+                <!-- Message Content -->
+                <h2 style="margin: 0; padding: 0; font-size: 22px; color: #333; text-align: center;">پیغام</h2>
+                <hr style="margin: 20px 0; border: none; border-top: 1px solid #eee;">
+                <p style="font-size: 16px; color: #555; text-align: center;">
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                </p>
+                <button style="display: block; margin: 20px auto; padding: 10px 20px; font-size: 16px; color: #fff; background-color:rgb(106, 178, 255); border: none; border-radius: 5px; cursor: pointer;" onclick="hidePopup()">بستن</button>
+            </div>
+        {% endif %}
+        
+        <!-- Script for Closing Pop-up -->
+        <script>
+            function hidePopup() {
+                document.getElementById('popup').style.display = 'none';
+                document.getElementById('overlay').style.display = 'none';
+            }
+        </script>
+        <!-- =============================================================================== -->
 
         <!-- Breadcrumb -->
         <ol class="breadcrumb">
@@ -86,169 +117,51 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for submission in context%}
                     <tr>
                         <td class="text-xs-center">
                             <div class="avatar">
-                                 <strong>1</strong>
+                                 <strong>{{submission.id}}</strong>
                             </div>
                         </td>
                         <td class="text-xs-center">
-                            <div>محمد حسین زاده</div>
+                            <div>{{submission.question}}</div>
                             <div class="small text-muted">
                             </div>
                         </td>
                         <td class="text-xs-center">
-                             <span>پایتون</span>
+                             <span>{{submission.question.language}}</span>
                         </td>
                         <td class="text-xs-center">
-                                    <strong>دزدی کلان در کلانتری</strong>
+                                    <strong>{{submission.sent_date | to_jalali }}</strong>
                         </td>
                         <td class="text-xs-center">
-                            <span class="tag tag-success">صحیح</span>
+                            {% if submission.is_compiled %}
+                                {% if submission.is_Checked %}
+                                    {% if submission.final_result %}
+                                        <span class="tag tag-success">صحیح</span>
+                                    {% else %}
+                                        <span class="tag tag-danger">نادرست</span>
+                                    {% endif %}
+                                {% else %}
+                                    <span class="tag tag-primary">در انتظار تایید استاد</span>
+                                {% endif %}
+                            {% else %}
+                            <span class="tag tag-warning">در صف بررسی</span>
+                            {% endif %}
                         </td>
                         <td class="text-xs-center">
+                            {% if submission.is_Checked %}
                             <strong>0.5</strong>
+                            {% else %}
+                            <strong>نامعلوم</strong>
+                            {% endif %}
                         </td>
                         <td class="text-xs-center">
                             <button type="button" class="btn btn-outline-info">مشاهده</button>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="text-xs-center">
-                            <div class="avatar">
-                                <strong>2</strong>
-                            </div>
-                        </td>
-                        <td class="text-xs-center">
-                            <div>علی باقری</div>
-                            <div class="small text-muted">
-
-                            </div>
-                        </td>
-                        <td class="text-xs-center">
-                            <span>جاوا</span>
-
-                        </td>
-                        <td class="text-xs-center">
-                                    <strong>میز گرد بزرگ</strong>
-                        </td>
-                        <td class="text-xs-center">
-                            <span class="tag tag-warning">در صف بررسی</span>
-                        </td>
-                        <td class="text-xs-center">
-                            <strong>0.75</strong>
-                        </td>
-                        <td class="text-xs-center">
-                            <button type="button" class="btn btn-outline-info">مشاهده</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-xs-center">
-                            <div class="avatar">
-                                <img src="{% static 'img/avatars/user.png' %}" class="img-avatar" alt="admin@bootstrapmaster.com" src="{% static 'img/avatars/user.png' %}">
-                            </div>
-                        </td>
-                        <td class="text-xs-center">
-                            <div>سید رضا حسینی</div>
-                            <div class="small text-muted">
-                        </td>
-                        <td class="text-xs-center">
-                            <span>سی شارپ</span>
-                        </td>
-                        <td class="text-xs-center">
-                                    <strong>رشته خوب و رشته بد</strong>
-                        </td>
-                        <td class="text-xs-center">
-                            <span class="tag tag-danger">نادرست</span>
-                        </td>
-                        <td class="text-xs-center">
-                            <strong>1</strong>
-                        </td>
-                        <td class="text-xs-center">
-                            <button type="button" class="btn btn-outline-info">مشاهده</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-xs-center">
-                            <div class="avatar">
-                                <img src="{% static 'img/avatars/user.png' %}" class="img-avatar" alt="admin@bootstrapmaster.com" src="{% static 'img/avatars/user.png' %}">
-                            </div>
-                        </td>
-                        <td class="text-xs-center">
-                            <div>فرهاد هاشمی</div>
-                            <div class="small text-muted">
-                            </div>
-                        </td>
-                        <td class="text-xs-center">
-                            <span>سی + +</span>
-                        </td>
-                        <td class="text-xs-center">
-                            <strong>نقشه کشی جدول</strong>
-                        </td>
-                        <td class="text-xs-center">
-                            <span class="tag tag-warning">در صف بررسی</span>
-                        </td>
-                        <td class="text-xs-center">
-                            <strong>0.25</strong>
-                        </td>
-                        <td class="text-xs-center">
-                            <button type="button" class="btn btn-outline-info">مشاهده</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-xs-center">
-                            <div class="avatar">
-                                <img src="{% static 'img/avatars/user.png' %}" class="img-avatar" alt="admin@bootstrapmaster.com" src="{% static 'img/avatars/user.png' %}">
-                            </div>
-                        </td>
-                        <td class="text-xs-center">
-                            <div>مرتضی حسنی</div>
-                            <div class="small text-muted">
-                            </div>
-                        </td>
-                        <td class="text-xs-center">
-                            <span>پایتون</span>
-                        </td>
-                        <td class="text-xs-center">
-                                    <strong>طول مجموع و ارقام</strong>
-                        </td>
-                        <td class="text-xs-center">
-                            <span class="tag tag-info">ناقص</span>
-                        </td>
-                        <td class="text-xs-center">
-                            <strong>0.75</strong>
-                        </td>
-                        <td class="text-xs-center">
-                            <button type="button" class="btn btn-outline-info">مشاهده</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-xs-center">
-                            <div class="avatar">
-                                <img src="{% static 'img/avatars/user.png' %}" class="img-avatar" alt="admin@bootstrapmaster.com" src="{% static 'img/avatars/user.png' %}">
-                            </div>
-                        </td>
-                        <td class="text-xs-center">
-                            <div>امیر شاملو</div>
-                            <div class="small text-muted">
-                            </div>
-                        </td>
-                        <td class="text-xs-center">
-                            <span>جاوا</span>
-                        </td>
-                        <td class="text-xs-center">
-                                    <strong>اعداد هگزا دسیمال</strong>
-                        </td>
-                        <td class="text-xs-center">
-                            <span class="tag tag-success">صحیح</span>
-                        </td>
-                        <td class="text-xs-center">
-                            <strong>0.25</strong>
-                        </td>
-                        <td class="text-xs-center">
-                            <button type="button" class="btn btn-outline-info">مشاهده</button>
-                        </td>
-                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
 

@@ -1,47 +1,55 @@
-import subprocess
+import pika
+import json
 
-def pythonCompiler(solution_file, input_file, expected_output_file):
-    try:
-        # Read input file line by line
-        with open(input_file, "r") as inp, open(expected_output_file, "r") as expected:
-            input_lines = inp.readlines()
-            expected_lines = expected.readlines()
+def send_file(solution,input,output, metadata):
+    connection = pika.BlockingConnection(pika.ConnectionParameters(host="localhost"))
+    channel = connection.channel()
+    
+    channel.queue_declare(queue="file_queue")
 
-        actual_output = []
-        
-        # Run solution.py for each line of input
-        for line in input_lines:
-            result = subprocess.run(
-                ["python", solution_file],
-                input=line,
-                capture_output=True,
-                text=True,
-                timeout=5  # Set time limit
-            )
-            actual_output.append(result.stdout.strip())  # Collect actual output
+    with open(solution, "rb") as file:
+        file_data = file.read()
+    with open(input, "rb") as file:
+        file_data2 = file.read()
 
-        # Compare line by line
-        correct = True
-        for i in range(len(expected_lines)):
-            expected_line = expected_lines[i].strip()
-            actual_line = actual_output[i] if i < len(actual_output) else "Missing output"
+    with open(output, "rb") as file:
+        file_data3 = file.read()
+    message = {
+        "metadata": metadata,
+        "solution": file_data.hex() ,
+         "input": file_data2.hex(),
+         "output": file_data3.hex() 
+    }
 
-            if expected_line != actual_line:
-                correct = False
-                print(f"❌ Test {i+1} failed!\nExpected: {expected_line}\nReceived: {actual_line}\n")
+    channel.basic_publish(exchange="", routing_key="file_queue", body=json.dumps(message))
+    print("File is Sent")
 
-        if correct:
-            print("✅ All test cases passed!")
+    connection.close()
 
-    except subprocess.TimeoutExpired:
-        print("⏳ Time limit exceeded!")
-    except Exception as e:
-        print(f"Error: {str(e)}")
 
-# Example usage
-# solution_file = "1.py"
-# input_file = "input.txt"
-# expected_output_file = "output.txt"
 
-# compile_and_check(solution_file, input_file, expected_output_file)
+def contest_send_file(solution,input,output, metadata):
+    connection = pika.BlockingConnection(pika.ConnectionParameters(host="localhost"))
+    channel = connection.channel()
+    
+    channel.queue_declare(queue="file_queue")
+
+    with open(solution, "rb") as file:
+        file_data = file.read()
+    with open(input, "rb") as file:
+        file_data2 = file.read()
+
+    with open(output, "rb") as file:
+        file_data3 = file.read()
+    message = {
+        "metadata": metadata,
+        "solution": file_data.hex() ,
+         "input": file_data2.hex(),
+         "output": file_data3.hex() 
+    }
+
+    channel.basic_publish(exchange="", routing_key="file_queue", body=json.dumps(message))
+    print("File is Sent")
+
+    connection.close()
 

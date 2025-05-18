@@ -61,19 +61,18 @@
                    مدیریت سوالات
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="icon-doc"></i>ثبت سوال</a>
+                    <a class="nav-link" href="{% url 'unsolvedQuestion' %}"><i class="icon-doc"></i>سوالات بی پاسخ</a>
                 </li>
                  <li class="nav-item">
                     <a class="nav-link" href="#"><i class="icon-docs"></i> لیست سوالات</a>
                 </li>
-
                 <li class="nav-title">
-                   گزارش گیری
-                </li>
+                     مسابقه
+                 </li>
                  <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="icon-people"></i> کاربران</a>
-                    <a class="nav-link" href="#"><i class="icon-docs"></i>  فایل ها</a>
-                </li>
+                     <a class="nav-link" href="{% url 'contest' %}"><i class="icon-doc"></i>ورود به مسابقه </a>
+                 </li>
+ 
             </ul>
         </nav>
     </div>

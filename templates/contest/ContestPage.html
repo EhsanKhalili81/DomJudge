@@ -1,0 +1,92 @@
+{% extends "contest/base.html" %}
+{% load static %}
+{% block content%}
+
+    <!-- Main content -->
+    <main class="main">
+
+        <!-- Breadcrumb -->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">خانه</li>
+            <li class="breadcrumb-item"><a href="#">جدول مسابقه</a>
+            </li>
+
+        </ol>
+
+        <div class="container-fluid">
+
+<style>
+    .fixed-th {
+        width: 60px; 
+        height: 20px;  
+        text-align: center; 
+        white-space: nowrap; 
+    }
+    .fixed-name {
+        width: 125px; 
+        height: 20px;  
+        text-align: center; 
+        white-space: nowrap; 
+    }
+    
+</style>
+<table class="table table-hover table-outline m-b-0 hidden-sm-down">
+    <thead class="thead-default">
+        <tr>
+            <th class="text-xs-center fixed-th">رتبه</i>
+            </th>
+            <th class="text-xs-center fixed-name">تیم</th>
+            <th class="text-xs-center fixed-th">امتیاز</th>
+            {% for letter in letters%}
+            <th class="text-xs-center fixed-th">{{letter}}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for contester in contesters %}
+        <tr>
+            <td class="text-xs-center">
+                <div class="avatar">
+                     <strong>{{contester.rank}}</strong>
+                </div>
+            </td>
+            <td class="text-xs-center">
+                <div>{{contester.user.first_name}} {{contester.user.last_name}}</div>
+                <div class="small text-muted">
+                </div>
+            </td>
+            <td class="text-xs-center">
+                 <strong>{{contester.score}}</strong>
+            </td>
+            {% for i , z  in contester.questions.items  %}
+                {% if z.tries == 0 %}
+                    <td class="text-xs-center" style="background-color:rgb(255, 255, 255);" >
+                        <strong></strong>
+                    </td>
+                {% elif z.result == True %}
+                    {% if z.first == True %}
+                    <td class="text-xs-center" style="background-color: #1daa1d;" >
+                        <strong>1 تلاش </strong>
+                    </td>
+                    {% else %}
+                    <td class="text-xs-center" style="background-color: #60e760;" >
+                        <strong>{{z.tries}} تلاش</strong>
+                    </td>
+                    {% endif %}
+                {% else%}
+                    <td class="text-xs-center" style="background-color: #e87272;" >
+                        <strong>{{z.tries}}تلاش </strong>
+                    </td>
+                {% endif %}
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+</div>
+<!--/.container-fluid-->
+</main>
+
+{% endblock %}
