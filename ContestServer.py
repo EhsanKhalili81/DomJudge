@@ -1,6 +1,6 @@
 import os
 import django
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "DomJudge.settings")  # Replace with your actual project name
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "DomJudge.settings")
 django.setup()
 import pika
 import json
@@ -14,7 +14,7 @@ import subprocess
 
 
 
-def compiler(solution_file, input_file, expected_output_file,lang):
+def compiler(solution_file, input_file, expected_output_file,lang,timelimit):
     try:
         with open(input_file, "r") as inp, open(expected_output_file, "r") as expected:
             input_lines = inp.readlines()
@@ -27,7 +27,7 @@ def compiler(solution_file, input_file, expected_output_file,lang):
         elif lang == 'java':
             compile_structure = ["java", solution_file]
         else:
-            compile_structure = ["dotnet", "run" , "--no-build" ,solution_file]
+            compile_structure = ["dotnet", "run"  ,solution_file]
 
         for line in input_lines:
             result = subprocess.run(
@@ -35,16 +35,17 @@ def compiler(solution_file, input_file, expected_output_file,lang):
                 input=line,
                 capture_output=True,
                 text=True,
-                timeout=5 
+                timeout=int(timelimit) 
             )
             actual_output.append(result.stdout.strip()) 
 
         correct = True
         for i in range(len(expected_lines)):
             expected_line = expected_lines[i].strip()
+            # print("--",expected_line)
             actual_line = actual_output[i] if i < len(actual_output) else "Missing output"
-
-            if expected_line != actual_line:
+            # print("---a-aa-a-a-aa",actual_line[-1])
+            if expected_line != actual_line.split()[-1]:
                 correct = False
                 print(f"❌ Test {i+1} failed!\nExpected: {expected_line}\nReceived: {actual_line}\n")
                 print("False")
@@ -89,7 +90,7 @@ def process_file(solution,input,output, metadata):
 
     with open(Outputs, "wb") as file:
         file.write(binascii.unhexlify(output)) 
-    result = compiler(solutionfile,Inputs,Outputs,metadata['lang'])
+    result = compiler(solutionfile,Inputs,Outputs,metadata['lang'],metadata['timelimit'])
     contester = Contester.objects.get(id = metadata['contester_id'])
     question = contester.questions
     question[str(metadata['question_id'])]['tries'] += 1

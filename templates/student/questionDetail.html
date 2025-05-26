@@ -110,7 +110,7 @@
                                                 نمره : {{context.score}}</br>
                                                 درس : {{context.course}}</br>
                                                 محدوده زمانی : {{context.timelimit}} ثانیه</br>
-                                                فایل PDF سوال : <a href = "{{context.question_file}}" download >برای دانلود کلیک کنید</a>
+                                                فایل PDF سوال : <a href="{% url 'questionfile' context.id%}" download >برای دانلود کلیک کنید</a>
                                             </div>
                                         </div>
                                     </div>

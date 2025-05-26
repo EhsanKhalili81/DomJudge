@@ -92,23 +92,22 @@
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="file-input">فایل ورودی ها</label>
                                     <div class="col-md-9">
-                                        <input type="file" accept="application/pdf" id="file-input" name="file-input">
+                                        <input type="file" accept="" id="file-input" name="file-input">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="file-output">فایل خروجی ها</label>
                                     <div class="col-md-9">
-                                        <input type="file" accept="application/pdf" id="file-output" name="file-output">
+                                        <input type="file" accept="" id="file-output" name="file-output">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="select">زبان مورد نظر</label>
                                     <div class="col-md-9">
                                         <select id="select" name="language" class="form-control" size="1">
-                                            <option value="0">python</option>
-                                            <option value="1">c++</option>
-                                            <option value="2">c#</option>
-                                            <option value="3">java</option>
+                                            <option value="python">python</option>
+                                            <option value="c#">c#</option>
+                                            <option value="java">java</option>
                                         </select>
                                     </div>
                                 </div>
@@ -123,6 +122,13 @@
                                     <label class="col-md-3 form-control-label" for="text-input">نمره</label>
                                     <div class="col-md-9">
                                         <input type="number" id="text-input" name="score" class="form-control" placeholder="2">
+                                        {% comment %} <span class="help-block">This is a help text</span> {% endcomment %}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="text-input">تعداد دفعات مجاز برای ارسال</label>
+                                    <div class="col-md-9">
+                                        <input type="number" id="text-input" name="allowednumber" class="form-control" placeholder="2">
                                         {% comment %} <span class="help-block">This is a help text</span> {% endcomment %}
                                     </div>
                                 </div>

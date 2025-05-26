@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import CustomLoginView,TeacherHomeView,StudentHomeView,StudentProfile,Add_User,logout_user,addContester,register_users_from_excel,Users,User_Detail
+from .views import CustomLoginView,TeacherHomeView,report,StudentHomeView,StudentProfile,Add_User,logout_user,addContester,register_users_from_excel,Users,User_Detail,signUp
 from django.contrib.auth.views import LogoutView
 
 # urlpatterns = [
@@ -19,6 +19,10 @@ urlpatterns = [
     path('users/',Users.as_view(),name = 'users'),
     path('user_detail/<int:id>',User_Detail.as_view(),name = 'user_detail'),
     path('addContester/',addContester.as_view(),name = 'addContester'),
+    path('signUp/',signUp.as_view(),name = 'signUp'),
+    path('report/',report.as_view(),name = 'report'),
+
+
 
 
 

@@ -52,7 +52,7 @@
                     <div class="col-sm-6 col-lg-3">
                         <div class="card card-inverse card-primary">
                             <div class="card-block p-b-0">
-                                <h4 class="m-b-0">9.823</h4>
+                                <h4 class="m-b-0">{{sent_submissions}}</h4>
                                 <p>تعداد ارسالی ها</p>
                             </div>
                             <div class="chart-wrapper p-x-1" style="height:70px;">
@@ -65,7 +65,7 @@
                     <div class="col-sm-6 col-lg-3">
                         <div class="card card-inverse card-info">
                             <div class="card-block p-b-0">
-                                <h4 class="m-b-0">9.823</h4>
+                                <h4 class="m-b-0">{{correct_submissions}}</h4>
                                 <p>تعداد پاسخ درست</p>
                             </div>
                             <div class="chart-wrapper p-x-1" style="height:70px;">
@@ -78,7 +78,7 @@
                     <div class="col-sm-6 col-lg-3">
                         <div class="card card-inverse card-warning">
                             <div class="card-block p-b-0">
-                                <h4 class="m-b-0">9.823</h4>
+                                <h4 class="m-b-0">{{wrong_submissions}}</h4>
                                 <p>تعداد پاسخ های نادرست</p>
                             </div>
                             <div class="chart-wrapper" style="height:70px;">
@@ -91,8 +91,8 @@
                     <div class="col-sm-6 col-lg-3">
                         <div class="card card-inverse card-danger">
                             <div class="card-block p-b-0">
-                                <h4 class="m-b-0">9.823</h4>
-                                <p>تعداد بی پاسخ ها</p>
+                                <h4 class="m-b-0">{{questions}}</h4>
+                                <p>تعداد سوالات</p>
                             </div>
                             <div class="chart-wrapper p-x-1" style="height:70px;">
                                 <canvas id="card-chart4" class="chart" height="70"></canvas>
@@ -154,7 +154,7 @@
                               </form>
                                 <i style="color: rgb(5, 148, 5); padding-left: 5%;" class="fa fa-check-square fa-lg " onclick="document.getElementById('myForm').submit();">
                                 </i>
-                            <i style="color: rgb(38, 198, 6);" class="fa fa-edit fa-lg"></i>
+                            <a href="{% url 'solvedQuestionsDetails' StudentActivity.id %}"><i style="color: rgb(38, 198, 6);" class="fa fa-edit fa-lg"></i></a>
                         </td>
                     </tr>
                     {% endfor %}

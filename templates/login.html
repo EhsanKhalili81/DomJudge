@@ -17,7 +17,36 @@
     <!-- Main styles for this application -->
     <link href="{% static 'dest/style.css' %}" rel="stylesheet">
 </head>
-
+            {% comment %}===================== Pop up message =============================== {% endcomment %}
+                {% if messages %}
+                <!-- Overlay -->
+                <div id="overlay" style="display: block; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 999;"></div>
+                
+                <!-- Pop-up -->
+                <div id="popup" style="display: block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 400px; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); z-index: 1000;">
+                    <!-- Close Button -->
+                    <span style="position: absolute; top: 15px; right: 15px; font-size: 20px; font-weight: bold; color: #888; cursor: pointer;" onclick="hidePopup()">×</span>
+                    
+                    <!-- Message Content -->
+                    <h2 style="margin: 0; padding: 0; font-size: 22px; color: #333; text-align: center;">پیغام</h2>
+                    <hr style="margin: 20px 0; border: none; border-top: 1px solid #eee;">
+                    <p style="font-size: 16px; color: #555; text-align: center;">
+                        {% for message in messages %}
+                            {{ message }}
+                        {% endfor %}
+                    </p>
+                    <button style="display: block; margin: 20px auto; padding: 10px 20px; font-size: 16px; color: #fff; background-color:rgb(106, 178, 255); border: none; border-radius: 5px; cursor: pointer;" onclick="hidePopup()">بستن</button>
+                </div>
+            {% endif %}
+            
+            <!-- Script for Closing Pop-up -->
+            <script>
+                function hidePopup() {
+                    document.getElementById('popup').style.display = 'none';
+                    document.getElementById('overlay').style.display = 'none';
+                }
+            </script>
+            <!-- =============================================================================== -->
 <body style="display: flex; align-items: center; position: relative; top: -3rem;">
     <div class="container">
         <div class="row">
@@ -44,6 +73,9 @@
                                     <button type="submit" class="btn btn-primary p-x-2">
                                         <i class="icon-login"></i>
                                         ورود</button>
+                                </div>
+                                <div class="col-xs-6 text-xs-right">
+                                    <button onclick="window.location.href='{% url 'signUp'%}'" type="button" class="btn btn-link p-x-0">ثبت نام</button>
                                 </div>
                             </div>
                             </form>

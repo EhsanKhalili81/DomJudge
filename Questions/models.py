@@ -28,17 +28,16 @@ def user_directory_path(instance, filename):
     return os.path.join('questions', username, title, filename)
 class Question(models.Model):
     LANGUAGE_CHOICES = (
-        ('0', 'python'),
-        ('1', 'c++'),
-        ('2', 'c#'),
-        ('3', 'java'),
+        ('python', 'python'),
+        ('c#', 'c#'),
+        ('java', 'java'),
     )
     creator = models.ForeignKey(CustomUser,on_delete = models.CASCADE)
     title = models.CharField(max_length=50,blank=False)
     description = models.TextField(blank=False)
     input_form = models.TextField()
     output_form = models.TextField()
-    question_file = models.FileField(upload_to=user_directory_path)
+    question_file = models.FileField(upload_to=user_directory_path,blank=True)
     timelimit = models.SmallIntegerField()
     inputs_file = models.FileField(upload_to=user_directory_path)
     outputs_file = models.FileField(upload_to=user_directory_path)
@@ -47,6 +46,7 @@ class Question(models.Model):
     deadline = models.DateTimeField()
     score = models.FloatField()
     course = models.ForeignKey(Course,on_delete=models.CASCADE)
+    allowed_number = models.SmallIntegerField()
 
 
     def __str__(self):

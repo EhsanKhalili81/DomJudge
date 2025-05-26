@@ -1,0 +1,181 @@
+{% extends 'teacher/base.html' %}
+{% load static %}
+{% load filters %}
+{% block content %}
+<link rel="stylesheet" href="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.css">
+<script type="text/javascript" src="https://unpkg.com/@majidh1/jalalidatepicker/dist/jalalidatepicker.min.js"></script>
+
+
+
+     <!-- Main content -->
+     <main class="main">
+            {% comment %}===================== Pop up message =============================== {% endcomment %}
+                {% if messages %}
+                <!-- Overlay -->
+                <div id="overlay" style="display: block; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 999;"></div>
+                
+                <!-- Pop-up -->
+                <div id="popup" style="display: block; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 400px; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); z-index: 1000;">
+                    <!-- Close Button -->
+                    <span style="position: absolute; top: 15px; right: 15px; font-size: 20px; font-weight: bold; color: #888; cursor: pointer;" onclick="hidePopup()">×</span>
+                    
+                    <!-- Message Content -->
+                    <h2 style="margin: 0; padding: 0; font-size: 22px; color: #333; text-align: center;">پیغام</h2>
+                    <hr style="margin: 20px 0; border: none; border-top: 1px solid #eee;">
+                    <p style="font-size: 16px; color: #555; text-align: center;">
+                        {% for message in messages %}
+                            {{ message }}
+                        {% endfor %}
+                    </p>
+                    <button style="display: block; margin: 20px auto; padding: 10px 20px; font-size: 16px; color: #fff; background-color:rgb(106, 178, 255); border: none; border-radius: 5px; cursor: pointer;" onclick="hidePopup()">بستن</button>
+                </div>
+            {% endif %}
+            
+            <!-- Script for Closing Pop-up -->
+            <script>
+                function hidePopup() {
+                    document.getElementById('popup').style.display = 'none';
+                    document.getElementById('overlay').style.display = 'none';
+                }
+            </script>
+            <!-- =============================================================================== -->
+
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class = " col-md-6 ">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>ویرایش سوال</strong>
+                        </div>
+                        <div class="card-block">
+                            <form action="{% url 'editQuestion' context.id%}" method="post" enctype="multipart/form-data" class="form-horizontal ">
+                                {% csrf_token %}
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="text-input">عنوان</label>
+                                    <div class="col-md-9">
+                                        <input type="text" id="text-input" value="{{context.title}}" name="title" class="form-control" placeholder="عنوان">
+                                        {% comment %} <span class="help-block">This is a help text</span> {% endcomment %}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="textarea-input">توضیحات</label>
+                                    <div class="col-md-9">
+                                        <textarea id="textarea-input" value="" name="description" rows="9" class="form-control" placeholder="شرح سوال">{{context.description}}</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="text-input">مدل ورودی</label>
+                                    <div class="col-md-9">
+                                        <input type="text" id="text-input" value = "{{context.input_form}} " name="inputs" class="form-control" placeholder="مدل ورودی">
+                                        {% comment %} <span class="help-block">This is a help text</span> {% endcomment %}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="outputs">مدل خروجی</label>
+                                    <div class="col-md-9">
+                                        <input type="text" id="text-input" value = "{{context.output_form}}" name="outputs" class="form-control" placeholder="مدل خروجی">
+                                        {% comment %} <span class="help-block">This is a help text</span> {% endcomment %}
+                                    </div>
+                                </div>
+                                {% comment %} <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="file-input">فایل سوال</label>
+                                    <div class="col-md-9">
+                                        <input type="file" value = "{{context.question_file}}" accept="application/pdf" id="file-input" name="file">
+                                    </div>
+                                </div> {% endcomment %}
+                                {% comment %} <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="text-input">محدوده زمانی</label>
+                                    <div class="col-md-9">
+                                        <input type="number" value="{{context.timelimit}}" id="text-input" name="timelimit" class="form-control" placeholder="2">
+                                        <span class="help-block">This is a help text</span>
+                                    </div>
+                                </div> {% endcomment %}
+                                {% comment %} <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="file-input">فایل ورودی ها</label>
+                                    <div class="col-md-9">
+                                        <input type="file" accept="" id="file-input" name="file-input">
+                                    </div>
+                                </div> {% endcomment %}
+                                {% comment %} <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="file-output">فایل خروجی ها</label>
+                                    <div class="col-md-9">
+                                        <input type="file" accept="" id="file-output" name="file-output">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="select">زبان مورد نظر</label>
+                                    <div class="col-md-9">
+                                        <select id="select" name="language" class="form-control" size="1">
+                                            <option value="python">python</option>
+                                            <option value="c#">c#</option>
+                                            <option value="java">java</option>
+                                        </select>
+                                    </div>
+                                </div> {% endcomment %}
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="text-input">مهلت ارسال</label>
+                                    <div class="col-md-9">
+                                        <input data-jdp data-jdp-max-date type="text" value="{{context.deadline | to_jalali}}" id="text-input" name="deadline" class="form-control" placeholder="برای انتخاب تاریخ ، کلیک کنید">
+                                        {% comment %} <span class="help-block">This is a help text</span> {% endcomment %}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="text-input">نمره</label>
+                                    <div class="col-md-9">
+                                        <input type="number" value="{{context.score}}" id="text-input" name="score" class="form-control" placeholder="2">
+                                        {% comment %} <span class="help-block">This is a help text</span> {% endcomment %}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="text-input">تعداد دفعات مجاز برای ارسال</label>
+                                    <div class="col-md-9">
+                                        <input type="number" value="{{ context.allowed_number}}" id="text-input" name="allowednumber" class="form-control" placeholder="2">
+                                        {% comment %} <span class="help-block">This is a help text</span> {% endcomment %}
+                                    </div>
+                                </div>
+                                {% comment %} <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="select">درس</label>
+                                    <div class="col-md-9">
+                                        <select id="select" name="course" class="form-control" size="1">
+
+                                        </select>
+                                    </div>
+                                </div> {% endcomment %}
+                        </div>
+                        <div class="card-footer">
+                            {% comment %} <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> ذخیره</button> {% endcomment %}
+                            <button type="submit" class="btn btn-outline-primary btn-md btn-block">ویرایش سوال</button>
+                        </form>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                jalaliDatepicker.startWatch({
+                  minDate: "attr",
+                  maxDate: "attr",
+                  minTime: "attr",
+                  maxTime: "attr",
+                  time: true,
+                  date: true,
+                  hasSecond: true,
+                  hideAfterChange: false,
+                  autoHide: true,
+                  showTodayBtn: true,
+                  showEmptyBtn: true,
+                  topSpace: 10,
+                  bottomSpace: 30,
+                  overflowSpace: -10,
+                  dayRendering(opt, input) {
+                    return {
+                      isHollyDay: opt.day == 1,
+                    };
+                  },
+                });
+          
+                document.getElementById("aaa").addEventListener("jdp:change", function (e) {
+                  console.log(e);
+                });
+              </script>
+{% endblock %}

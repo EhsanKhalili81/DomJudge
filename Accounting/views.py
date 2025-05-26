@@ -10,11 +10,31 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.decorators import method_decorator
 from .models import *
 from django.contrib import messages
-from Judge.models import Submissions,Contester,Contest
+from Judge.models import Submissions,Contester,Contest,Question
 from .permission import student_required,teacher_required
 
 
 
+class signUp(View):
+    def get(self,request):
+        return render(request,'signup.html')
+    def post(self,request):
+        data = request.POST
+        user_exists = CustomUser.objects.filter(username=data.get("studentcode")).exists()
+        if user_exists:
+            messages.warning(request,"نام کاربری تکراری است")
+            return redirect('signUp')
+
+        try:
+            CustomUser.objects.create_user(first_name = data.get("name") , last_name = data.get("lname") 
+                                              , username = data.get("studentcode"),password=data.get("nationalcode"),
+                                              nationalcode = data.get("nationalcode") , email=data.get("email"))
+            messages.warning(request,"حساب کاربری ساخته شد . ")
+            
+        except:
+            messages.warning(request,"حساب کاربری ساخته نشد . ")
+            return redirect('signUp')
+        return redirect('login')
 
  
 class CustomLoginView(LoginView):
@@ -34,7 +54,11 @@ class TeacherHomeView(LoginRequiredMixin,TemplateView):
 
     def get_context_data(self ,**kwargs):
         studentActivity = Submissions.objects.filter( is_Checked = False , is_contest = False)
-        return {"context" : studentActivity}
+        sent_submissions = Submissions.objects.all().count()
+        correct_submissions = Submissions.objects.filter(final_result = True).count()
+        wrong_submissions = Submissions.objects.filter(final_result = False).count()
+        questions = Question.objects.all().count()
+        return {"context" : studentActivity,"sent_submissions":sent_submissions,"correct_submissions":correct_submissions,"wrong_submissions":wrong_submissions,"questions":questions}
 
 
 # @method_decorator(student_required, name='dispatch')
@@ -43,10 +67,13 @@ class StudentHomeView(LoginRequiredMixin,TemplateView):
 
     def get_context_data(self ,**kwargs):
         studentActivity = Submissions.objects.filter(student = self.request.user , is_contest = False)
-        return {"context" : studentActivity}
+        sent_submissions = Submissions.objects.filter(student = self.request.user).count()
+        correct_submissiobs = Submissions.objects.filter(student = self.request.user , final_result = True).count()
+        unsolvedQuestions = Question.objects.exclude(id__in=Submissions.objects.filter(student=self.request.user).values_list("question_id", flat=True)).count
+        return {"context" : studentActivity,"numberOfSent" : sent_submissions,"numberOfCorrects" : correct_submissiobs,"numberOfWrongs":sent_submissions-correct_submissiobs,"unslovedQuestion":unsolvedQuestions}
 
 
-@method_decorator(student_required, name='dispatch')
+# @method_decorator(student_required, name='dispatch')
 class StudentProfile(LoginRequiredMixin, View):
     template_name = 'student\profile.html'
     def get(self,request):
@@ -160,3 +187,16 @@ class addContester(View):
         Contester.objects.create(user = CustomUser.objects.get(id=request.POST.get('user')),contest =contest,questions=questions )
         messages.success(request, 'کاربر با موفقیت ثبت شد.')
         return redirect('addContester') 
+
+
+class report(View):
+    def get(self,request):
+        return render(request,'teacher/report.html')
+    def post(self,request):
+        usercode = request.POST.get("code")
+        user = CustomUser.objects.get(username = usercode)
+        user_submissions = Submissions.objects.filter(student = user)
+        return render(request,'teacher/report.html',{"client":user,
+                                                     "user_submissions":user_submissions.count()
+                                                     ,"user_trueResponse":user_submissions.filter(final_result=True).count()
+                                                     ,"user_falseResponse":user_submissions.filter(final_result=False).count()})
